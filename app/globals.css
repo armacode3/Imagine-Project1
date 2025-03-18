@@ -2,32 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
-  }
+    --foreground-rgb: 0, 0, 0;
+    --background-rgb: 255, 255, 255;
+    --primary-color: 59, 130, 246; /* Blue-500 */
+    --secondary-color: 209, 213, 219; /* Gray-300 */
+    
+}
   
-  @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
+      --foreground-rgb: 255, 255, 255;
+      --background-rgb: 15, 23, 42;
+      --primary-color: 37, 99, 235; /* Blue-600 */
+      --secondary-color: 55, 65, 81; /* Gray-700 */
     }
-  }
+}
   
-  body {
-    color: var(--foreground);
-    background: var(--background);
-    font-family: Arial, Helvetica, sans-serif;
-  }
+body {
+    color: black;
+    background-color: rgb(var(--background-rgb));
+}
   
-  .button {
-    background-color: red;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+  
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-color), 0.3);
+    border-radius: 4px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-color), 0.5);
+}
+  
+@layer components {
+    .message-user {
+      @apply bg-blue-100 text-right p-3 rounded-lg mb-2 ml-auto max-w-[80%] dark:bg-blue-900 dark:text-white;
+    }
+    
+    .message-bot {
+      @apply bg-gray-100 p-3 rounded-lg mb-2 max-w-[80%] dark:bg-gray-800 dark:text-white;
+    }
+    
+    .typing-indicator {
+      @apply inline-block h-2 w-2 bg-gray-500 rounded-full mx-0.5 animate-bounce;
+    }
+}
