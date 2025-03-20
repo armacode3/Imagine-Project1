@@ -37,6 +37,8 @@ export async function POST(req: Request) {
      3. Return response 
   */
 
+
+  
   const { messages } = await req.json() as RequestBody;
 
   try {

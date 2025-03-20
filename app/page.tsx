@@ -7,9 +7,11 @@
 */
 "use client";
 import { useChat } from "@ai-sdk/react";
+import { useState } from "react";
 
 export default function Page() {
     const { messages, input, handleInputChange, handleSubmit, status } = useChat();
+    const [ file, setFile] = useState(null);
 
     return (
         <div className="max-w-3x1 mx-auto p-4 flex flex-col">
@@ -30,6 +32,17 @@ export default function Page() {
                 )}
             </div>
             <form onSubmit={handleSubmit} className="flex gap-2">
+                <input type="file" onChange={(e) => {
+                    if (e.target.files != null) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const content = event.target.result;
+                            console.log(content);
+                            setFile(content);
+                        }
+                        reader.readAsText(e.target.files[0]);
+                    }
+                }}></input>
                 <input name="prompt" 
                        value={input} 
                        onChange={handleInputChange} 
